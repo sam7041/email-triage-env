@@ -1,0 +1,37 @@
+spec_version: 1
+name: email-triage-env
+type: docker
+description: >
+  A real-world OpenEnv environment for training AI agents to triage
+  customer-support emails. Agents learn to classify urgency, route to
+  the correct department, extract key entities, and draft professional
+  responses — mirroring tasks performed daily by support teams worldwide.
+author: Sameer Shukla
+tags:
+  - email
+  - triage
+  - customer-support
+  - nlp
+  - real-world
+  - openenv
+runtime: docker
+app: server.app:app
+port: 7860
+tasks:
+  - id: easy
+    name: urgency_classification
+    difficulty: easy
+    description: Classify email urgency (low / medium / high / critical)
+    reward_range: [0.0, 1.0]
+  - id: medium
+    name: department_routing
+    difficulty: medium
+    description: Classify priority + category + extract key entities
+    reward_range: [0.0, 1.0]
+  - id: hard
+    name: full_triage
+    difficulty: hard
+    description: Full triage including sentiment, escalation flag, and response draft
+    reward_range: [0.0, 1.0]
+observation_type: EmailObservation
+action_type: TriageAction
